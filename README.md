@@ -1,2 +1,17 @@
 # java-chat
-Updated and improved version from the chat i created when i was learning java.
+Una de mis primeras aplicaciones "avanzadas" que cree mientras aprendia java. 
+
+## Caracteristicas
+* Soporte para salas de chat (chatrooms)
+* Privilegios de administrador/moderador haciendo posible kickear/mutear/banear usuarios y/o salas.
+* Aplicacion cliente-servidor mediante uso de Sockets.
+* Interfaz usando Swing y MigLayout
+* Uso de threads
+
+### Comandos
+```
+  /mute <usuario>
+  /ban <usuario>
+  /kick <usuario>
+  /muteroom <nombre de sala>
+  /kickroom <nombre de sala>
