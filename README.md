@@ -1,5 +1,5 @@
 # java-chat
-Una de mis primeras aplicaciones "avanzadas" recreada para usar servlet/jpa/soap/jax-rs/jax-ws
+Una de mis primeras aplicaciones "avanzadas" recreada usando servlet/jpa/jax-ws (soap)
 
 ## Caracteristicas
 * Soporte para salas de chat (chatrooms)
