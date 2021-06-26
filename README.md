@@ -1,6 +1,8 @@
-# java-chat
-Una de mis primeras aplicaciones "avanzadas" recreada usando servlet/jpa/jax-ws (soap)
-Java spring boot + vue frontend
+# spring-chat
+Primera aplicacion usando SpringBoot (frontend) + Vue (Backend) 
+* Hibernate
+* Rest API
+
 ## Caracteristicas
 * Soporte para salas de chat (chatrooms)
 * Privilegios de administrador/moderador haciendo posible kickear/mutear/banear usuarios y/o salas.
