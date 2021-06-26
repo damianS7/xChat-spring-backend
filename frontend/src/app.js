@@ -1,14 +1,19 @@
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
-import App from './App.vue'
-import router from './router/index'
-import store from './store/index'
+Vue.use(BootstrapVue)
+
+import '@babel/polyfill'
+import 'mutationobserver-shim'
+import './plugins/bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-//require('./bootstrap');
-Vue.use(BootstrapVue)
-window.Vue = require('vue');
+
+
+// My app
+import router from './router/index'
+import store from './store/index'
+import App from './App.vue'
 
 Vue.config.productionTip = false
 new Vue({

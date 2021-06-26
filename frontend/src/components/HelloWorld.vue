@@ -1,11 +1,9 @@
 <template>
-  <div class="hello">
     <b-container fluid class="p-0 wrapper">
-        DASHBOARd
-        resumen de todo
+        Hello World!
         <b-button>Hit me!</b-button>
+        <b-button variant="primary">Primary</b-button>
     </b-container>
-  </div>
 </template>
 
 <script>
