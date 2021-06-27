@@ -1,9 +1,28 @@
-# Compiled class file
-*.class
-.classpath
-.project
+### MAVEN ###
 HELP.md
 target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### IDE ECLIPSE/VSCODE ###
+.settings
+.vscode
 
 # Log file
 *.log
@@ -16,9 +35,3 @@ target/
 *.zip
 *.tar.gz
 *.rar
-
-# IDE ECLIPSE/VSCODE
-.settings
-.vscode
-.idea
-chat.iml
