@@ -1,9 +1,8 @@
 package com.chat.room;
 
+import com.chat.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -11,25 +10,30 @@ import java.util.List;
 @RequestMapping("api/rooms")
 public class RoomController {
 
+    private final RoomChatService roomChatService;
     private final RoomService roomService;
 
     @Autowired
-    public RoomController (RoomService roomService) {
+    public RoomController (RoomService roomService, RoomChatService roomChatService) {
         this.roomService = roomService;
+        this.roomChatService = roomChatService;
     }
 
     @GetMapping("/list")
+    // Devuelve una lista con todas las "rooms" disponibles
     public List<Room> list() {
         return roomService.getRooms();
     }
 
-    @GetMapping("/join")
-    public String join() {
-        return "{id: 5, roomName:'asas', message:'successfully joined'}!";
+    @PostMapping(path="/join/{id}")
+    // Entra en la sala indicada a traves del id
+    public List<User> join(@RequestBody User user) {
+        return roomChatService.joinRoom(user);
     }
 
-    @GetMapping("/exit")
-    public String exit() {
-        return "another response!";
+    @PostMapping("/exit/{id}")
+    // Sale de la sala indicada a traves del id
+    public Room exit(@RequestBody User user) {
+        return roomChatService.exitRoom(user);
     }
 }
