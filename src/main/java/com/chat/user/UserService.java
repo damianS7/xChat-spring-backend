@@ -26,16 +26,15 @@ public class UserService {
     /**
      * Metodo para dar de alta nuevos usuarios
      * @param user
-     * @return
+     * @return devuelve el usuario creado o una excepcion
      */
-    public User createUser(User user) throws IllegalStateException {
+    public User createUser(User user) throws EmailTakenException {
         // Aqui se comprueba si el email ya ha sido usado
         if (userRepository.findByEmail(user.getEmail()) != null) {
             // El correo ya esta en uso ...
-            // No funciona aun
-            throw new IllegalStateException("Este correo esta en uso.");
+            throw new EmailTakenException("Este correo ya esta en uso.");
         }
-        // El correo no ha sido usado previamente, usuario dado de alta.
+        // El correo no ha sido usado previamente, podemos dar de alta al usuario.
         return userRepository.save(user);
     }
 

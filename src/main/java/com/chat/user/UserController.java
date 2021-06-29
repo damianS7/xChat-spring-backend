@@ -31,7 +31,7 @@ public class UserController {
      * @return Creado el usuario devuelve null
      */
     @PostMapping(path = "/", consumes = "application/json")
-    public User create(@RequestBody User user) throws Exception {
+    public User create(@RequestBody User user) throws EmailTakenException {
         return userService.createUser(user);
     }
 }
