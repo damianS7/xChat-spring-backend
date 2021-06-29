@@ -1,10 +1,12 @@
 package com.chat.room;
 
 import com.chat.user.User;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 // Logica referente a cada sala
 public class RoomChatService {
     //private List<Room> liveRooms = new ArrayList<Room>();
