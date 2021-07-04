@@ -33,6 +33,10 @@ public class Room {
     @Transient
     private final List<User> userList = new ArrayList<User>();
 
+    public Room() {
+
+    }
+
     public Room (Long id, String name, String description) {
         this.id = id;
         this.name = name;
