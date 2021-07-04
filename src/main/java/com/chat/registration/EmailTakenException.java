@@ -1,4 +1,4 @@
-package com.chat.user;
+package com.chat.registration;
 
 public class EmailTakenException extends Exception {
     public EmailTakenException(String s) {

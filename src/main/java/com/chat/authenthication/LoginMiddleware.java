@@ -1,4 +1,4 @@
-package com.chat.login;
+package com.chat.authenthication;
 
 public class LoginMiddleware {
 
