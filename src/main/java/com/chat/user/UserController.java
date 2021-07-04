@@ -1,6 +1,8 @@
 package com.chat.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,9 +16,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/{id}")
-    public User get(@PathVariable Long id) {
-        return userService.findUser(id);
+    // Endpoint para actualizar los datos de usuario
+    @PostMapping("/profile")
+    public User update(@RequestBody UserUpdateRequest request) {
+        return userService.update(request);
     }
 
 }
