@@ -1,15 +1,13 @@
 package com.chat.user;
 
-import com.chat.room.Room;
-import com.chat.room.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -18,24 +16,22 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    // Modifica los datos de un usuario
+    public User update(User user) {
+
+        return user;
+    }
+
     //
     public User findUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    /**
-     * Metodo para dar de alta nuevos usuarios
-     * @param user
-     * @return devuelve el usuario creado o una excepcion
-     */
-    public User createUser(User user) throws EmailTakenException {
-        // Aqui se comprueba si el email ya ha sido usado
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            // El correo ya esta en uso ...
-            throw new EmailTakenException("Este correo ya esta en uso.");
-        }
-        // El correo no ha sido usado previamente, podemos dar de alta al usuario.
-        return userRepository.save(user);
+    // Este metodo se usa para ...
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username).orElseThrow( () -> {
+            throw new UsernameNotFoundException("Este nombre no ha sido encontrado.");
+        });
     }
-
 }
