@@ -1,26 +1,21 @@
 package com.chat.authentication;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping
 public class AuthenticationController {
+    @Autowired
+    private AuthenticationService authenticationService;
 
-    @GetMapping("/login")
-    public String index () {
-        return "Envia tus credenciales via post a /login";
-    }
-
-    @PostMapping("/login")
-    public String login(){
-        return "Logeado con exito!";
-    }
-
-    @PostMapping("/logout")
-    public boolean logout(){
-        return true;
+    //@CrossOrigin(origins = "http://localhost:8080")
+    @PostMapping("/api/users/login")
+    public AuthenticationResponse login(@RequestBody AuthenticationRequest request) throws AuthenticationException {
+        return authenticationService.auth(request);
     }
 }

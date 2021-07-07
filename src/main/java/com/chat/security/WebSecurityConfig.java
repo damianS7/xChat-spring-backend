@@ -1,11 +1,11 @@
 package com.chat.security;
 
-import com.chat.authentication.AuthenticationFilter;
 import com.chat.authentication.AuthorizationFilter;
 import com.chat.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,11 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().cors()
                 .and().csrf().disable()
-                .authorizeRequests().antMatchers("/login/**", "/registration/**")
-                //.authorizeRequests().antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
+                .authorizeRequests().antMatchers("/api/users/login/**", "/api/users/registration/**")
                 .permitAll()
                 .anyRequest().authenticated().and()
-                .addFilter(new AuthenticationFilter(authenticationManager()))
                 .addFilter(new AuthorizationFilter(authenticationManager()));
     }
 
@@ -48,6 +46,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) {
         // Se define la clase que recupera los usuarios y el algoritmo para procesar las passwords
         auth.authenticationProvider(daoAuthenticationProvider());
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManager () throws Exception {
+        return super.authenticationManager();
     }
 
     @Bean
@@ -66,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * configurar CORS para permitir el puerto donde se ejecuta el frontend
      */
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.applyPermitDefaultValues();
         //configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
