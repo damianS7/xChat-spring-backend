@@ -1,9 +1,7 @@
 package com.chat.authentication;
 
-import com.chat.security.SecurityConstant;
+import com.chat.security.JwtUtil;
 import com.chat.user.User;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,8 +10,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 // Servicio para logearse en la aplicacion
 @Service
@@ -37,15 +33,15 @@ public class AuthenticationService {
             //throw new RuntimeException("Bad credentials XD v2"); // 500 Internal
         }
 
-        String token = Jwts.builder()
-                .setIssuer(SecurityConstant.ISSUER_INFO)
-                .setIssuedAt(new Date())
-                .setSubject(username)
-                .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1)))
-                .signWith(SignatureAlgorithm.HS512, SecurityConstant.SECRET_KEY).compact();
+        // Creamos el token utilizado para validar al usuario
+        String token = JwtUtil.generateToken(username);
 
         User user = (User) auth.getPrincipal();
 
+        // Esto no tiene sentido en si usamos sesiones sin estado y tokens??
+        // SecurityContextHolder.getContext().setAuthentication(auth);
+
+        // Enviamos al usuario de vuelta los datos necesarios para el cliente
         return new AuthenticationResponse(
                 user.getId(), user.getUsername(), user.getEmail(), token
         );
