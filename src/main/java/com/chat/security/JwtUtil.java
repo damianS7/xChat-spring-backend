@@ -4,8 +4,6 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -15,24 +13,26 @@ public class JwtUtil {
 
     /**
      * Crea un token unico para el nombre de usuario indicado
-     * @param username
-     * @return
+     * @param username Nombre del usuario que va a ser cifrado en el token
+     * @return El token generado con los datos de usuario cifrados en el token
      */
     public static String generateToken (String username) {
         return Jwts.builder()
                 .setIssuer(SecurityConstant.ISSUER_INFO)
                 .setIssuedAt(new Date())
                 .setSubject(username)
+                // Puede ser de utilidad mas adelante
+                // .setId(userId)
                 .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1)))
                 .signWith(SignatureAlgorithm.HS512, SecurityConstant.SECRET_KEY).compact();
     }
 
     /**
      * Se procesa el token y se recupera el usuario.
-     * @param token
+     * @param token Contiene el token de seguridad que se envia con la peticion
      * @return El nombre de usuario cifrado en el token
-     * @throws ExpiredJwtException
-     * @throws MalformedJwtException
+     * @throws ExpiredJwtException El token de seguridad ha expirado
+     * @throws MalformedJwtException El formato del token no es correcto
      */
     public static String extractUsernameFromToken (String token) throws MalformedJwtException, ExpiredJwtException {
         return Jwts.parser()

@@ -1,8 +1,8 @@
 package com.chat.authentication;
 
 /**
- * Contiene los datos a devolver cuando el usuario
- * se logea con exito en la aplicacion.
+ * Esta clase es un template que contiene los datos a devolver cuando el usuario se logea
+ * con exito en la aplicacion.
  */
 public class AuthenticationResponse {
     public Long id;

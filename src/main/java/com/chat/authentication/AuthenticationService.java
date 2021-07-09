@@ -11,12 +11,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-// Servicio para logearse en la aplicacion
+/**
+ * Servicio que permite autenticarse en la aplicacion
+ */
 @Service
 public class AuthenticationService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    /**
+     * Metodo que contiene la logica principal del servicio de autenticacion.
+     * @param request Peticion que contiene los datos de usuario que intenta autenticarse (usuario y password)
+     * @return La respuesta que contiene los datos del usuario autentificado.
+     * @throws AuthenticationException Excepcion con el mensaje del fallo arrojado durante la autenticacion
+     */
     public AuthenticationResponse auth (AuthenticationRequest request) throws AuthenticationException {
         String username = request.getUsername();
         String password = request.getPassword();
@@ -30,15 +38,16 @@ public class AuthenticationService {
             );
         } catch (AuthenticationException e) {
             throw new AuthenticationFailedException("Bad credentials"); // 403 Forbidden
-            //throw new RuntimeException("Bad credentials XD v2"); // 500 Internal
         }
 
         // Creamos el token utilizado para validar al usuario
         String token = JwtUtil.generateToken(username);
 
+        // Usuario autenticado
         User user = (User) auth.getPrincipal();
 
-        // Esto no tiene sentido en si usamos sesiones sin estado y tokens??
+        // Si necesitasemos mantener la sesion podriamos almacenar los datos
+        // Pero esto no tiene sentido en si usamos sesiones sin estado basado tokens
         // SecurityContextHolder.getContext().setAuthentication(auth);
 
         // Enviamos al usuario de vuelta los datos necesarios para el cliente

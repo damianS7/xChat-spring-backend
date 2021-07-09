@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-// En esta clase se comprueban que las peticiones estan autorizadas para acceder a los recursos.
-// En cada peticion se comprueba el token enviado por el usuario y se validad.
+/**
+ * En esta clase se comprueba que las peticiones de acceso a los recursos estan autorizadas.
+ * Para ello, en cada peticion se comprueba el token enviado por el usuario y se valida.
+ */
 public class AuthorizationFilter extends BasicAuthenticationFilter {
 
     public AuthorizationFilter(AuthenticationManager authManager) {

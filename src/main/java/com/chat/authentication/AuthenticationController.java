@@ -13,7 +13,12 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
 
-    //@CrossOrigin(origins = "http://localhost:8080")
+    /**
+     * Punto de acceso (POST) para la autenticacion
+     * @param request Peticion que contiene el usuario y password del usuario
+     * @return Devuelve AuthenticationResponse con los datos de usuario (id, username, email y token)
+     * @throws AuthenticationException Excepcion en caso de fallo
+     */
     @PostMapping("/api/users/login")
     public AuthenticationResponse login(@RequestBody AuthenticationRequest request) throws AuthenticationException {
         return authenticationService.auth(request);
