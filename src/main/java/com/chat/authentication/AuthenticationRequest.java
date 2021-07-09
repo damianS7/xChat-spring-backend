@@ -1,6 +1,10 @@
 package com.chat.authentication;
 
+/**
+ * Esta clase se utiliza como plantilla para los datos que debe enviar el usuario en su peticion.
+ */
 public class AuthenticationRequest {
+    // Estos metodos tambien podrian ser publicos y eliminar los metodos ...
     private final String username;
     private final String password;
 
