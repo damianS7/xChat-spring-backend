@@ -1,6 +1,6 @@
 package com.chat.user;
 
-import com.chat.security.PasswordEncoder;
+import com.chat.utils.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,6 @@
 package com.chat.authentication;
 
-import com.chat.security.JwtUtil;
+import com.chat.utils.JwtUtil;
 import com.chat.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
