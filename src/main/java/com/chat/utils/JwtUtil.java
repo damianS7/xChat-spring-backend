@@ -1,5 +1,6 @@
-package com.chat.security;
+package com.chat.utils;
 
+import com.chat.config.SecurityConstant;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;

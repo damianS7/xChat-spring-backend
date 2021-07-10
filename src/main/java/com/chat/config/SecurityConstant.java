@@ -1,4 +1,4 @@
-package com.chat.security;
+package com.chat.config;
 
 public class SecurityConstant {
     public static final String SECRET_KEY = "123456";

@@ -14,16 +14,22 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String username;
+
     @Column
     private String email;
+
     @Column
     private String password;
 
-    @Enumerated(EnumType.STRING)
     @Column
+    @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    // Conexion con el frontend
+
 
     public User() {
         // ...
