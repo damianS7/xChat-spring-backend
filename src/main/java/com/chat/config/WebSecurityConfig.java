@@ -1,4 +1,4 @@
-package com.chat.security;
+package com.chat.config;
 
 import com.chat.authentication.AuthorizationFilter;
 import com.chat.user.UserService;
@@ -16,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -36,10 +38,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().cors()
                 .and().csrf().disable()
-                .authorizeRequests().antMatchers("/api/users/login/**", "/api/users/registration/**")
+                .authorizeRequests()
+                .antMatchers("/api/users/login/**", "/api/users/registration/**", "/ws/**")
                 .permitAll()
-                .anyRequest().authenticated().and()
-                .addFilter(new AuthorizationFilter(authenticationManager()));
+                .anyRequest().authenticated()
+                .and().addFilter(new AuthorizationFilter(authenticationManager()));
     }
 
     @Override
@@ -74,7 +77,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.applyPermitDefaultValues();
-        //configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedOrigins(List.of("http://localhost:8080"));
         //configuration.setAllowedMethods(Arrays.asList("GET", "OPTIONS", "POST"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
