@@ -22,8 +22,11 @@ docker run --name pgserver -e POSTGRES_PASSWORD=123456 -d pgserver
 ```
 
 2) RestAPI
-Modifica el fichero application.properties y cambia la linea por la de tu servidor postgreSQL en docker (puedes usar ip addr)
-   spring.datasource.url=jdbc:postgresql://<SERVIDOR_POSTGRESQL_DOCKER>:5432/spring_chat
+   
+Modifica el fichero application.properties y cambia la linea por 
+   la de tu servidor postgreSQL en docker (puedes usar ip addr)
+   
+spring.datasource.url=jdbc:postgresql://<SERVIDOR_POSTGRESQL_DOCKER>:5432/spring_chat
 
 ```
 git clone https://github.com/damianS7/simple-rest-chat-backend.git
