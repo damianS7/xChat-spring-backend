@@ -1,4 +1,4 @@
-package com.chat.authentication;
+package com.chat.auth;
 
 /**
  * Esta clase se utiliza como plantilla para los datos que debe enviar el usuario en su peticion.

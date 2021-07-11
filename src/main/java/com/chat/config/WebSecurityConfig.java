@@ -1,6 +1,6 @@
 package com.chat.config;
 
-import com.chat.authentication.AuthorizationFilter;
+import com.chat.auth.AuthorizationFilter;
 import com.chat.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

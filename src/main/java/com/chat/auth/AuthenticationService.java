@@ -1,4 +1,4 @@
-package com.chat.authentication;
+package com.chat.auth;
 
 import com.chat.utils.JwtUtil;
 import com.chat.user.User;

@@ -19,6 +19,7 @@ public class Room {
     @Id
     @SequenceGenerator(name = "room_sequence", sequenceName = "room", allocationSize = 1)
     @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "room_sequence")
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     // Nombre de la sala
@@ -26,12 +27,6 @@ public class Room {
 
     // Descripcion de la sala
     private String description;
-
-
-    // Este campo NO se almacena en la BD
-    // Este campo contiene la lista de usuarios que estan en la sala
-    @Transient
-    private final List<User> userList = new ArrayList<User>();
 
     public Room() {
 
@@ -65,26 +60,5 @@ public class Room {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    // Devuelve una lista con todos los usuarios que tiene la sala
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    /**
-     * Comprueba si el usuario ya esta dentro de la sala
-     * @param user
-     * @return true si el usuario ya esta en la sala
-     */
-    public boolean exists(User user) {
-        return this.userList.contains(user);
-    }
-
-    // Agrega un nuevo usuario a la sala
-    public void addUserToRoom(User user) {
-        if (!this.exists(user)) {
-            this.userList.add(user);
-        }
     }
 }

@@ -1,4 +1,4 @@
-package com.chat.authentication;
+package com.chat.auth;
 
 /**
  * Esta clase es un template que contiene los datos a devolver cuando el usuario se logea

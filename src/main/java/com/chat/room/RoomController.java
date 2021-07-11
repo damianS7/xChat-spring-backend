@@ -29,18 +29,6 @@ public class RoomController {
         return roomService.getRooms();
     }
 
-    @PostMapping(path="/join/{id}")
-    // Entra en la sala indicada a traves del id
-    public List<User> join(@RequestBody User user) {
-        return roomChatService.joinRoom(user);
-    }
-
-    @PostMapping("/exit/{id}")
-    // Sale de la sala indicada a traves del id
-    public Room exit(@RequestBody User user) {
-        return roomChatService.exitRoom(user);
-    }
-
     // Endpoint al cual enviar los mensajes
     @MessageMapping("/chat")
     // Canal de susbscripcion, todos aquellos suscritos a /room/message

@@ -1,4 +1,4 @@
-package com.chat.authentication;
+package com.chat.auth;
 
 import org.springframework.security.core.AuthenticationException;
 
