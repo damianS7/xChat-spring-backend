@@ -2,10 +2,14 @@ package com.chat.room;
 
 import com.chat.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Controller
 @RestController
 @RequestMapping("api/rooms")
 public class RoomController {
@@ -36,4 +40,12 @@ public class RoomController {
     public Room exit(@RequestBody User user) {
         return roomChatService.exitRoom(user);
     }
-}
+
+    // Endpoint al cual enviar los mensajes
+    @MessageMapping("/chat")
+    // Canal de susbscripcion, todos aquellos suscritos a /room/message
+    // recibiran los mensajes por medio de broadcast
+    @SendTo("/room/message")
+    public RoomMessageResponse send(@RequestBody RoomMessageRequest request) {
+        return new RoomMessageResponse(request.roomId, request.senderId, request.sender, request.message);
+    }}
