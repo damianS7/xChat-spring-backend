@@ -1,19 +1,28 @@
-# spring-chat
-Primera aplicacion usando SpringBoot (frontend) + Vue (Backend) 
-* Hibernate
-* Rest API
+# SimpleRestChat
+Sencilla aplicacion usando SpringBoot (frontend) + Vue (Backend) 
 
 ## Caracteristicas
+* Rest API
 * Soporte para salas de chat (chatrooms)
-* Privilegios de administrador/moderador haciendo posible kickear/mutear/banear usuarios y/o salas.
-* Aplicacion cliente-servidor mediante uso de Sockets.
-* Interfaz usando Swing y MigLayout
-* Uso de threads
+* Uso de Spring WebSocket (backend) y SockJS (frontend) para el intercambio de mensajes entre salas 
+* Autenticacion y Autorizacion (Spring Web Security)
+* Base de datos (Spring JPA)
 
-### Comandos
+## Servicios
+* La API puede ser accedida desde localhost:8888
+* El servidor de base de datos en localhost:5432 (Postgress)
+* La interfaz web se accede desde localhost:8080
+
+## Compilacion y ejecucion
+>Backend
 ```
-  /mute <usuario>
-  /ban <usuario>
-  /kick <usuario>
-  /muteroom <nombre de sala>
-  /kickroom <nombre de sala>
+git clone https://github.com/damianS7/simple-rest-chat-backend.git
+cd simple-rest-chat-backend
+./mvnw package
+java -jar target/*.jar
+```
+> Servidor postgreSQL
+```
+docker pull ...
+```
+> Frontend (https://github.com/damianS7/simple-rest-chat-frontend)
