@@ -1,0 +1,7 @@
+FROM postgres
+COPY spring_chat.sql /docker-entrypoint-initdb.d/
+EXPOSE  5432
+# docker run --name <nombre para el contenedor> -e POSTGRES_PASSWORD=123456 -d <imagen>
+# docker run --name postgres -e POSTGRES_PASSWORD=123456 -d postgres
+# 172.17.0.1:5432
+
