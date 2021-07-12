@@ -29,7 +29,7 @@ public class RegistrationService {
      * @param user
      * @return devuelve el usuario creado o una excepcion
      */
-    public User register(User user) throws EmailTakenException, UsernameTakenException {
+    public UserRegistrationResponse register(User user) throws EmailTakenException, UsernameTakenException {
 
         // Comprobamos que no exista otro usuario con el mismo nombre
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
@@ -51,6 +51,13 @@ public class RegistrationService {
         user.setRole(UserRole.USER);
 
         // Guardamos el usuario
-        return registrationRepository.save(user);
+        // user = registrationRepository.save(user);
+        registrationRepository.save(user);
+        return new UserRegistrationResponse(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail()
+        );
     }
 }
+

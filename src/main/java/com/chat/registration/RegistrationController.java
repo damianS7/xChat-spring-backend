@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("registration")
+@RequestMapping
 public class RegistrationController {
 
     private final RegistrationService registrationService;
@@ -27,19 +27,8 @@ public class RegistrationController {
      * @param user
      * @return Creado el usuario devuelve null
      */
-    @PostMapping(path = "/", consumes = "application/json")
-    public User create(@RequestBody User user) throws EmailTakenException, UsernameTakenException {
+    @PostMapping(path = "/api/users/registration", consumes = "application/json")
+    public UserRegistrationResponse create(@RequestBody User user) throws EmailTakenException, UsernameTakenException {
         return registrationService.register(user);
-    }
-
-    // Metodo para modificar datos de usuario.
-    // Sin uso mientras no se agregue perfiles de usuario.
-    public User update() {
-        return null;
-    }
-
-    // Metodo para borrar usuarios
-    public User delete() {
-        return null;
     }
 }
