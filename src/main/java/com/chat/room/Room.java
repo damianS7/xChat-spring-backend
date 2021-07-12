@@ -6,12 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Transient;
-
-import com.chat.user.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "rooms")

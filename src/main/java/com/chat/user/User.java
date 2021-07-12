@@ -28,9 +28,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    // Conexion con el frontend
-
-
     public User() {
         // ...
     }
@@ -70,7 +67,7 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority =
-                new SimpleGrantedAuthority(UserRole.MOD.name());
+                new SimpleGrantedAuthority(UserRole.USER.name());
         return Collections.singletonList(authority);
     }
 

@@ -38,7 +38,8 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
         if (tokenInHeader == null || !tokenInHeader.startsWith(SecurityConstant.TOKEN_BEARER_PREFIX)) {
             // Esta peticion no se autorizara por no cumplir el formato asi que pasamos la peticion
             // tal como esta por el siguiente filtro al no estar autorizada automaticamente arrojara error 403
-            logger.info("Cabecera no encontrada o tiene formato incorrecto.");
+            // Las peticiones que no requieran de autorizacion tambien pasaran por aqui, estas no arrojaran ningun error
+            // logger.info("Cabecera no encontrada o tiene formato incorrecto.");
             chain.doFilter(request, response);
             return;
         }

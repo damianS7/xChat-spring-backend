@@ -9,7 +9,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-//@Configuration
 public class JwtUtil {
 
     /**

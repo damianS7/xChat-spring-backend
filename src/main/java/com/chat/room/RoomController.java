@@ -14,13 +14,11 @@ import java.util.List;
 @RequestMapping("api/rooms")
 public class RoomController {
 
-    private final RoomChatService roomChatService;
     private final RoomService roomService;
 
     @Autowired
-    public RoomController (RoomService roomService, RoomChatService roomChatService) {
+    public RoomController (RoomService roomService) {
         this.roomService = roomService;
-        this.roomChatService = roomChatService;
     }
 
     @GetMapping("/list")
