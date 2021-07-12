@@ -1,4 +1,4 @@
-# SimpleRestChat
+# xChat
 Sencilla aplicacion usando SpringBoot (frontend) + Vue (Backend) 
 
 ## Caracteristicas
