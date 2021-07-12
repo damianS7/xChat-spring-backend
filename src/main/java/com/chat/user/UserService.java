@@ -32,7 +32,10 @@ public class UserService implements UserDetailsService {
         return currentUser;
     }
 
-    //
+    /**
+     * @param id Id del usuario a buscar
+     * @return El usuario buscado o null
+     */
     public User findUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }
