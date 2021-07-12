@@ -30,12 +30,21 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
+        String token = null;
+
+        // Buscamos el token en la url
+        if (request.getParameter("token") != null) {
+            token = SecurityConstant.TOKEN_BEARER_PREFIX + request.getParameter("token");
+        }
+
         // Buscamos el token en la cabecera "Authorization" (HEADER_AUTHORIZATION_KEY)
-        String tokenInHeader = request.getHeader(SecurityConstant.HEADER_AUTHORIZACION_KEY);
+        if (request.getHeader(SecurityConstant.HEADER_AUTHORIZACION_KEY) != null) {
+            token = request.getHeader(SecurityConstant.HEADER_AUTHORIZACION_KEY);
+        }
 
         // 1. La peticion no contiene la cabecera "AUTHORIZATION" por lo que no tiene token firmado
         // 2. Contiene la cabecera "AUTHORIZATION" pero el formato no es correcto
-        if (tokenInHeader == null || !tokenInHeader.startsWith(SecurityConstant.TOKEN_BEARER_PREFIX)) {
+        if (token == null || !token.startsWith(SecurityConstant.TOKEN_BEARER_PREFIX)) {
             // Esta peticion no se autorizara por no cumplir el formato asi que pasamos la peticion
             // tal como esta por el siguiente filtro al no estar autorizada automaticamente arrojara error 403
             // Las peticiones que no requieran de autorizacion tambien pasaran por aqui, estas no arrojaran ningun error
@@ -49,7 +58,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
             UsernamePasswordAuthenticationToken authentication;
 
             // Obtenemos el nombre de usuario del token cifrado
-            String user = JwtUtil.extractUsernameFromToken(tokenInHeader);
+            String user = JwtUtil.extractUsernameFromToken(token);
 
             // Reconstruir el objeto "Authentication" a partir del token
             authentication = new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
