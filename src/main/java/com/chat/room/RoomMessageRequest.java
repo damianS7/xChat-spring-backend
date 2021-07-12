@@ -1,5 +1,8 @@
 package com.chat.room;
 
+/**
+ * Peticion usada para enviar mensajes en una sala
+ */
 public class RoomMessageRequest {
     // Id de la sala a la que se envia el mensaje
     public Long roomId;
