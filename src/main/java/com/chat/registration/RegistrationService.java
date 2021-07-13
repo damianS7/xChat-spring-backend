@@ -10,16 +10,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Service
 public class RegistrationService {
 
-    private final RegistrationRepository registrationRepository;
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public RegistrationService (
-            RegistrationRepository registrationRepository,
             UserRepository userRepository,
             BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.registrationRepository = registrationRepository;
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
@@ -52,7 +49,7 @@ public class RegistrationService {
 
         // Guardamos el usuario
         // user = registrationRepository.save(user);
-        registrationRepository.save(user);
+        userRepository.save(user);
         return new UserRegistrationResponse(
                 user.getId(),
                 user.getUsername(),
