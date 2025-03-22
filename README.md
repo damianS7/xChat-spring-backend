@@ -1,5 +1,5 @@
 # xChat
-Sencilla aplicacion usando SpringBoot (frontend) + Vue (Backend) 
+Sencilla aplicacion usando SpringBoot (backend) + Vue (frontend) 
 
 ## Caracteristicas
 * Rest API
@@ -27,15 +27,3 @@ Modifica el fichero application.properties y cambia la linea por
    la de tu servidor postgreSQL en docker (puedes usar ip addr)
    
 spring.datasource.url=jdbc:postgresql://<SERVIDOR_POSTGRESQL_DOCKER>:5432/spring_chat
-
-```
-git clone https://github.com/damianS7/simple-rest-chat-backend.git
-cd simple-rest-chat-backend
-./mvnw package
-java -jar target/*.jar
-```
-
-3) Frontend
-```
-https://github.com/damianS7/simple-rest-chat-frontend
-```
