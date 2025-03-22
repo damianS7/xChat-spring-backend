@@ -34,4 +34,5 @@ public class RoomController {
     @SendTo("/room/message")
     public RoomMessageResponse send(@RequestBody RoomMessageRequest request) {
         return new RoomMessageResponse(request.roomId, request.senderId, request.sender, request.message);
-    }}
+    }
+}
